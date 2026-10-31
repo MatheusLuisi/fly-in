@@ -58,4 +58,4 @@
 
 ### AI Usage
 
-Claude was mainly used to answer quick question and to struct this project.
+Claude was mainly used to answer quick questions and to structure this project
