@@ -1,0 +1,136 @@
+☐  Setup
+    ☐ Repo root structure (all files at the root)
+    ☐ .gitignore (__pycache__, .mypy_cache, venv)
+    ☐ venv + requirements.txt
+    ☐ Folders: src/ tests/ docs/
+    ☐ Read Chapter II (AI Instructions, pages 3-4 of the PDF)
+
+☐  Makefile
+    ☐ install
+    ☐ run
+    ☐ debug (pdb)
+    ☐ clean (__pycache__, .mypy_cache)
+    ☐ lint
+        ☐ flake8 .
+        ☐ mypy . --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
+    ☐ lint-strict (optional): flake8 . + mypy . --strict
+
+☐  Parser
+    ☐ Abstract class to handle the basic input
+    ☐ Read file with context manager
+    ☐ Ignore comments (#) and empty lines
+    ☐ nb_drones
+        ☐ First line of the file
+        ☐ Positive integer
+    ☐ Zones (start_hub / end_hub / hub)
+        ☐ Exactly 1 start_hub and 1 end_hub
+        ☐ Unique name, no dashes, no spaces
+        ☐ Integer coordinates
+    ☐ Zone metadata
+        ☐ zone: normal / blocked / restricted / priority (default normal)
+        ☐ Invalid zone type = parsing error
+        ☐ color: any single word (default none)
+        ☐ max_drones: positive integer (default 1)
+        ☐ max_drones ignored on start/end (not an error)
+        ☐ Tags in any order, valid bracket syntax
+    ☐ Connections
+        ☐ Only between previously defined zones
+        ☐ Bidirectional
+        ☐ No duplicates (a-b == b-a)
+        ☐ max_link_capacity: positive integer (default 1)
+    ☐ Errors
+        ☐ Stop the program with a clear message (line + cause)
+        ☐ Never crash on bad input
+    ☐ Unsolvable map (no path start→end) detected and reported, no crash, no infinite loop
+
+☐  Models (all OOP)
+    ☐ Zone (type, capacity, color, coordinates, occupancy)
+    ☐ Connection (zones, link capacity, occupancy)
+    ☐ Graph (adjacency, no graph libs)
+    ☐ Drone (id, position, state, in transit)
+    ☐ Decide which class does what (parser / pathfinder / simulation / visualizer)
+
+☐  Simulation engine
+    ☐ Discrete turns
+    ☐ All moves decided from the state at the start of the turn
+    ☐ Zone capacity (start and end unlimited)
+    ☐ Connection capacity
+    ☐ Space vacated this turn is usable by another drone in the same turn
+    ☐ Restricted zones
+        ☐ Costs 2 turns
+        ☐ Drone occupies the connection in transit
+        ☐ Must arrive on the next turn (cannot wait on the connection)
+        ☐ Connection freed on the arrival turn
+    ☐ Blocked zones never entered
+    ☐ Drones can stay in place (wait)
+    ☐ Stop when all drones reach the end zone
+
+☐  Pathfinding / scheduling
+    ☐ Cost-aware search (normal 1, priority 1 but preferred, restricted 2)
+    ☐ Exclude blocked zones
+    ☐ Distribute drones across multiple paths
+    ☐ Strategic waiting
+    ☐ Avoid conflicts and deadlocks
+    ☐ Respect max_drones and max_link_capacity
+    ☐ Adapt to different map topologies
+    ☐ Avoid infinite loops
+    ☐ Compare results with the optimums (VII.6)
+
+☐  Output
+    ☐ One line per turn
+    ☐ D<ID>-<zone> or D<ID>-<connection> (in transit)
+    ☐ Space-separated movements
+    ☐ Omit drones that did not move
+    ☐ Delivered drones are no longer tracked
+    ☐ Confirm connection name format
+
+☐  Visual representation
+    ☐ Colored terminal output and/or graphical interface
+    ☐ Use the color= metadata
+    ☐ Show drone movements and zone states
+
+☐  Quality
+    ☐ Python 3.10+
+    ☐ Completely object-oriented
+    ☐ Type hints (parameters, returns, variables)
+    ☐ flake8 clean
+    ☐ mypy clean
+    ☐ Docstrings (PEP 257)
+    ☐ try/except + context managers
+    ☐ No graph libraries (networkx, graphlib, etc.)
+    ☐ Own map files (edge cases, invalid inputs)
+    ☐ Tests (pytest/unittest, not submitted)
+
+☐  Benchmarks (optimum turns)
+    ☐ Linear path (2 drones): 4
+    ☐ Simple fork (4 drones): 4
+    ☐ Basic capacity (4 drones): 4
+    ☐ Dead end trap (5 drones): 8
+    ☐ Circular loop (6 drones): 10
+    ☐ Priority puzzle (5 drones): 6
+    ☐ Maze nightmare (8 drones): 13
+    ☐ Capacity hell (12 drones): 16
+    ☐ Ultimate challenge (15 drones): 26
+    ☐ Within 25% of optimum on every map
+    ☐ Exact optimum on every map
+
+☐  README (English)
+    ☐ Description
+    ☐ Instructions
+    ☐ Resources (+ how AI was used)
+    ☐ Algorithm choices + implementation strategy
+    ☐ Visual representation docs
+    ☐ Example input + expected output
+
+☐  Bonus
+    ☐ The Impossible Dream (25 drones): 43 turns
+
+☐  Peer-review prep
+    ☐ Explain the architecture and each class
+    ☐ Explain the graph representation
+    ☐ Explain the algorithm, why it was chosen, and its complexity
+    ☐ Explain caching / recalculation and memory usage
+    ☐ Explain capacities, simultaneous moves and restricted transit
+    ☐ Explain how invalid input is handled
+    ☐ Be ready for a live code modification
+    ☐ Demo the program

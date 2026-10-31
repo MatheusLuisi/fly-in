@@ -1,0 +1,4 @@
+start 31/10
+    - basic project structure
+
+

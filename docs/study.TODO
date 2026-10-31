@@ -1,0 +1,282 @@
+claude generate this shit i didnt read it yet.
+
+
+☐  1. Python essentials
+    ☐ Comprehensions (list, dict, set)
+    ☐ Exception handling (try / except / else / finally)
+    ☐ Raising exceptions and creating custom exceptions
+    ☐ Context managers (with, open, __enter__ / __exit__)
+    ☐ File handling and reading text files line by line
+    ☐ String methods (split, strip, replace, startswith, partition)
+    ☐ Regular expressions basics (re)
+    ☐ Modules, imports, __name__ == "__main__"
+    ☐ Iterators and generators
+    ☐ Lambda functions, sorting with key
+    ☐ enumerate(), zip(), any(), all(), map(), filter()
+    ☐ collections: deque, defaultdict
+    ☐ heapq (priority queue)
+    ☐ Enum
+    ☐ Command-line arguments (sys.argv / argparse)
+
+☐  2. Object-oriented programming
+    ☐ Classes vs instances, __init__, self
+    ☐ Instance / class attributes
+    ☐ Instance / class / static methods
+    ☐ Encapsulation (public / protected / private)
+    ☐ Properties (@property, getters and setters)
+    ☐ Inheritance and polymorphism
+    ☐ Composition vs inheritance
+    ☐ Abstract classes (abc, ABC, @abstractmethod)
+    ☐ Dunder methods: __str__, __repr__, __eq__, __hash__
+    ☐ Dataclasses
+    ☐ Single responsibility: one job per class
+    ☐ When should a class be created?
+    ☐ How should responsibilities be divided between classes?
+
+☐  3. Type hints and mypy
+    ☐ What are type hints and why use them?
+    ☐ Basic types (int, str, float, bool)
+    ☐ Collections with types (list[int], dict[str, Zone], tuple, set)
+    ☐ None, Optional and X | None (Python 3.10 syntax)
+    ☐ Union, Any, Callable
+    ☐ Literal and Protocol
+    ☐ Parameter, return and variable annotations
+    ☐ Type aliases
+    ☐ Type narrowing and isinstance()
+    ☐ Mypy flags used in the lint rule
+        ☐ --warn-return-any
+        ☐ --warn-unused-ignores
+        ☐ --ignore-missing-imports
+        ☐ --disallow-untyped-defs
+        ☐ --check-untyped-defs
+    ☐ --strict
+    ☐ How to read and fix mypy errors
+
+☐  4. Graph theory
+    ☐ What is a graph? Vertices (nodes) and edges (connections)
+    ☐ Directed vs undirected
+    ☐ Weighted vs unweighted
+    ☐ Connected vs disconnected graphs
+    ☐ Connected components and reachability (is end reachable from start?)
+    ☐ Cycles and paths
+    ☐ Degree of a node
+    ☐ Shortest paths
+    ☐ Adjacency lists vs adjacency matrices
+    ☐ Graph traversal
+    ☐ Bottlenecks and cuts (where does the graph limit throughput?)
+    ☐ How can a map be represented as a graph?
+    ☐ How can zones and connections be stored with Python dictionaries?
+
+☐  5. Search and pathfinding
+    ☐ Breadth-First Search (BFS)
+        ☐ How does it work? What is a queue?
+        ☐ Why does it find the shortest path (unweighted)?
+        ☐ How to avoid visiting the same node twice?
+        ☐ When should it be used?
+    ☐ Depth-First Search (DFS)
+        ☐ How does it work? What is a stack?
+        ☐ Recursive vs iterative
+        ☐ How can it detect cycles?
+        ☐ When should it be used?
+    ☐ Dijkstra's algorithm
+        ☐ What is a weighted graph?
+        ☐ How does it find the shortest path?
+        ☐ What is a priority queue / heap?
+        ☐ Difference between BFS and Dijkstra
+    ☐ Pathfinding for this project
+        ☐ How can a route be reconstructed (parent / predecessor map)?
+        ☐ How are restricted zones modeled (cost 2)?
+        ☐ How can priority zones be preferred without changing the cost (tie-breaking)?
+        ☐ How are blocked zones excluded?
+        ☐ How can connection capacities affect route selection?
+        ☐ How to find more than one route (alternative / disjoint paths)?
+        ☐ How can multiple routes be compared?
+        ☐ How to avoid infinite loops?
+
+☐  6. Scheduling multiple drones
+    ☐ Why is shortest path per drone not enough?
+    ☐ Time as a dimension: (zone, turn) states
+    ☐ Time-expanded graph (waiting = staying in the same zone next turn)
+    ☐ Reservation table (who occupies which zone / connection at which turn)
+    ☐ Planning drones one by one vs all together
+    ☐ Does the order drones are planned in change the result?
+    ☐ Flow-based thinking: how many drones can pass per turn through a bottleneck?
+    ☐ Max-flow / min-cut (intuition)
+    ☐ How to split drones across paths of different lengths?
+    ☐ How to model a restricted connection in time (occupies the link, must arrive next turn)?
+    ☐ Conflicts: two drones into the same zone, link over capacity, drones swapping places
+    ☐ Deadlocks: how do they happen? How to detect and avoid them?
+    ☐ Lower bound: how to compute the theoretical minimum turns for a map?
+        ☐ Example: Impossible Dream = entry latency 19 + 24 remaining drones = 43
+
+☐  7. Input parsing and validation
+    ☐ Open and read a file safely
+    ☐ Read line by line, keep the line number
+    ☐ Strip whitespace, skip empty lines
+    ☐ Ignore comments (#)
+    ☐ Identify the line type (nb_drones, start_hub, end_hub, hub, connection)
+    ☐ Parse metadata inside [...]
+    ☐ Report errors clearly (line + cause)
+    ☐ Custom ParseError
+    ☐ Input format
+        ☐ nb_drones: <number>
+        ☐ start_hub: <name> <x> <y> [metadata]
+        ☐ end_hub: <name> <x> <y> [metadata]
+        ☐ hub: <name> <x> <y> [metadata]
+        ☐ connection: <zone1>-<zone2> [metadata]
+    ☐ Validation questions
+        ☐ Is the number of drones a positive integer?
+        ☐ Exactly one start and one end?
+        ☐ Are coordinates integers?
+        ☐ Are zone names valid (no dashes, no spaces) and unique?
+        ☐ Do connections only use previously defined zones?
+        ☐ Are duplicate connections rejected (a-b == b-a)?
+        ☐ Are capacities positive integers?
+        ☐ Is the zone type one of normal / blocked / restricted / priority?
+        ☐ Is max_drones on start/end ignored?
+        ☐ Is the metadata syntax valid?
+        ☐ Is a map with no path start→end reported (not crashing)?
+
+☐  8. Data model and classes
+    ☐ What classes are needed?
+    ☐ What should each class store?
+        ☐ Drone
+        ☐ Zone
+        ☐ Connection
+        ☐ Map / Graph
+        ☐ Simulation
+    ☐ Possible classes: Drone, Zone, Connection, Map, Parser, Pathfinder, Simulation, Visualizer
+    ☐ Which class parses? Which does pathfinding? Which moves drones?
+    ☐ How should objects communicate?
+    ☐ How should dependencies between classes be organized?
+
+☐  9. Zones and connections
+    ☐ Zone types: normal, blocked, restricted, priority
+    ☐ Zone capacity (max_drones) and the start / end exceptions
+    ☐ Connection capacity (max_link_capacity)
+    ☐ Zone and connection metadata
+    ☐ Bidirectional connections
+    ☐ How to check whether a zone is available?
+    ☐ How to check whether a connection is available?
+    ☐ How to track occupied zones and connections?
+
+☐  10. Drone movement and simulation
+    ☐ How is a drone's position stored?
+    ☐ How are turns represented?
+    ☐ How are simultaneous movements handled?
+    ☐ How are decisions made using the state at the start of the turn?
+    ☐ How does a space freed this turn get reused in the same turn?
+    ☐ How are zone and connection capacity respected?
+    ☐ How can drones avoid collisions?
+    ☐ How does restricted-zone transit work?
+    ☐ How are drones in transit handled?
+    ☐ How can a drone wait?
+    ☐ How can a drone avoid getting stuck?
+    ☐ How can the simulation detect that all drones arrived?
+
+☐  11. Output format
+    ☐ One line per turn
+    ☐ D<ID>-<zone> and D<ID>-<connection>
+    ☐ Movements separated by spaces
+    ☐ Drones that do not move are omitted
+    ☐ How is restricted transit displayed?
+    ☐ When does the simulation stop?
+    ☐ How can the output be validated?
+
+☐  12. Visualization
+    ☐ How to represent zones, connections and drones?
+    ☐ How to show drone positions after each turn?
+    ☐ How to represent zone types, capacities and restricted zones?
+    ☐ Terminal colors (ANSI escape codes)
+    ☐ How to map color= values to terminal colors (and unknown color words)?
+    ☐ Graphical interface option
+    ☐ How does the visual help understand the simulation?
+
+☐  13. Performance and optimization
+    ☐ Big O notation, time and space complexity
+    ☐ How to avoid unnecessary calculations?
+    ☐ Recalculating vs caching paths
+    ☐ How can routes be shared by multiple drones?
+    ☐ How to identify bottlenecks?
+    ☐ How to reduce the number of turns?
+    ☐ How to compare different algorithms?
+    ☐ How to measure simulation performance?
+    ☐ Does it work with a large number of drones?
+    ☐ Benchmark maps
+        ☐ Linear path (2 drones): 4
+        ☐ Simple fork (4 drones): 4
+        ☐ Basic capacity (4 drones): 4
+        ☐ Dead end trap (5 drones): 8
+        ☐ Circular loop (6 drones): 10
+        ☐ Priority puzzle (5 drones): 6
+        ☐ Maze nightmare (8 drones): 13
+        ☐ Capacity hell (12 drones): 16
+        ☐ Ultimate challenge (15 drones): 26
+        ☐ The Impossible Dream (25 drones): 43
+
+☐  14. Testing and edge cases
+    ☐ pytest / unittest basics
+    ☐ Test individual classes and methods
+    ☐ Write your own map files
+    ☐ Parser: valid and invalid input
+    ☐ Pathfinding
+    ☐ Drone movement and simultaneous movements
+    ☐ Capacities (zone and connection)
+    ☐ Restricted, blocked and priority zones
+    ☐ Disconnected graphs
+    ☐ Maps with cycles
+    ☐ Maps with dead ends
+    ☐ Maps with one possible route / multiple routes
+    ☐ Large numbers of drones
+    ☐ Do all drones reach the destination?
+
+☐  15. Code quality and tools
+    ☐ Virtual environments and requirements.txt
+    ☐ Makefile rules (install, run, debug, clean, lint, lint-strict)
+    ☐ Debugging with pdb
+    ☐ Flake8 (reading and fixing warnings)
+    ☐ Docstrings (PEP 257, Google or NumPy style)
+    ☐ Logging
+    ☐ Git (add, commit, push)
+    ☐ .gitignore
+    ☐ Project structure and modular code
+    ☐ Clean code and naming conventions
+
+☐  16. README and documentation
+    ☐ Project description and objective
+    ☐ Installation and execution
+    ☐ Input and output format
+    ☐ Algorithms and implementation choices
+    ☐ Visualization
+    ☐ Examples
+    ☐ Resources and AI usage
+
+☐  17. Peer-review preparation
+    ☐ Can I explain the architecture and every class?
+    ☐ Can I explain the graph representation?
+    ☐ Can I explain the pathfinding algorithm and why I chose it?
+    ☐ Can I explain how capacities work?
+    ☐ Can I explain simultaneous movements?
+    ☐ Can I explain restricted-zone transit?
+    ☐ Can I explain how invalid input is handled?
+    ☐ Can I explain the simulation loop and how turns are counted?
+    ☐ Can I explain the complexity?
+    ☐ Can I demonstrate the program?
+    ☐ Can I explain the limitations of my implementation?
+    ☐ Can I make a small code change live?
+
+☐  18. Final checklist
+    ☐ I understand the input format
+    ☐ I understand graph theory basics
+    ☐ I understand BFS, DFS and Dijkstra
+    ☐ I understand time-expanded scheduling
+    ☐ I understand OOP, abstract classes and type hints
+    ☐ I know how to parse and validate input
+    ☐ I know how to represent the map
+    ☐ I know how to manage zone and connection capacities
+    ☐ I understand simultaneous movements and restricted transit
+    ☐ I know how to reconstruct a route
+    ☐ I know how to test the application
+    ☐ I know how to measure performance
+    ☐ I can run the project with the Makefile
+    ☐ I can explain my implementation
